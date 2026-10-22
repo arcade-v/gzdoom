@@ -2,7 +2,7 @@ var GZDOOMSETTINGS = {
     CLOUDSAVEURL: "",
 
     // --- Autoload ---
-    WADURL: "https://cdn.jsdelivr.net/gh/gzdoom/doom_2/doom2.wad",
+    WADURL: "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/doom_2/doom2.wad",
 
     // PK3 split into sequential binary parts.
     // Add or remove URLs to match your actual files.
@@ -10,10 +10,10 @@ var GZDOOMSETTINGS = {
         {
             name: "myhouse.pk3",
             parts: [
-                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part1",
-                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part2",
-                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part3",
-                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part4"
+                "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/myhouse.pk3.part1",
+                "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/myhouse.pk3.part2",
+                "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/myhouse.pk3.part3",
+                "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/myhouse.pk3.part4"
             ]
         }
     ]
