@@ -417,13 +417,44 @@
 
 
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gzdoom/myhouse/settings.js"></script>
-    <script type="text/javascript">
-        var rando = Math.floor(Math.random() * Math.floor(100000));
-        var script = document.createElement('script');
-        script.src = 'script.js?v=' + rando;
-        document.getElementsByTagName('head')[0].appendChild(script);
-    </script>
-</body>
+<script src="https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/settings.js"></script>
 
+<script>
+    (async function () {
+        const status = document.getElementById("status");
+        const playButton = document.getElementById("btnPlay");
+
+        playButton.disabled = true;
+        status.textContent = "Preparing GZDoom mods...";
+
+        try {
+            if (typeof window.prepareGZDoomSettings === "function") {
+                await window.prepareGZDoomSettings();
+            }
+
+            status.textContent = "Loading GZDoom runtime...";
+
+            const script = document.createElement("script");
+            script.src =
+                "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/myhouse/script.js?v=" +
+                Math.floor(Math.random() * 100000);
+
+            script.onload = function () {
+                status.textContent = "Runtime loaded. Ready to play.";
+            };
+
+            script.onerror = function () {
+                status.textContent = "Failed to load GZDoom script.js.";
+                console.error("Failed to load script.js");
+            };
+
+            document.head.appendChild(script);
+        } catch (error) {
+            console.error("GZDoom initialization failed:", error);
+            status.textContent = "Failed to prepare mods: " + error.message;
+            playButton.disabled = true;
+        }
+    })();
+</script>
+</body>
 </html>

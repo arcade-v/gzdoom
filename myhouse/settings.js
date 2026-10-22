@@ -12,7 +12,7 @@ var GZDOOMSETTINGS = {
             parts: [
                 "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part1",
                 "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part2",
-                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part3"
+                "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part3",
                 "https://cdn.jsdelivr.net/gh/gzdoom/myhouse/myhouse.pk3.part4"
             ]
         }
