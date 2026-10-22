@@ -623,7 +623,6 @@ class MyClass {
         if (this.autoStart)
         {
             document.getElementById('appTitle').style.display = 'none';
-            document.getElementById('githubLink').style.display = 'none';
         }
         else
         {
