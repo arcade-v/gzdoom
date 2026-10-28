@@ -46,6 +46,8 @@ class MyClass {
         this.canvas = document.getElementById('canvas');
         this.statusEl = document.getElementById('status');
 
+        document.getElementById('btnPlay').addEventListener('click', () => this.playGame());
+        document.getElementById('btnSettings').addEventListener('click', () => this.openSettings());
         document.getElementById('btnFullScreen').addEventListener('click', () => this.fullscreen());
         document.getElementById('btnNewGame').addEventListener('click', () => location.reload());
         document.getElementById('btnZoomOut').addEventListener('click', () => this.zoomOut());
@@ -1387,42 +1389,30 @@ class MyClass {
     }
 }
 
+let myApp = new MyClass();
+window['myApp'] = myApp;
 
-function initializeGZDoom() {
-    let myApp = new MyClass();
-    window['myApp'] = myApp;
+// Let settings.js attach custom hooks (myApp.modReplacementHook /
+// myApp.gzDoomIniHook) now that the app instance exists. settings.js is loaded
+// before script.js (see index.html), so window.postLoad already exists here.
+if (typeof window.postLoad === 'function') window.postLoad();
 
-    // Allow settings.js to attach its custom hooks.
-    if (typeof window.postLoad === 'function') {
-        window.postLoad();
-    }
+// Only now -- with the hooks wired -- start loading the WAD/mod manifests and
+// building the loader UI. Doing this after postLoad() (rather than in the
+// constructor) makes the ordering explicit: modReplacementHook is always set
+// before setupWadLoader reads mods.js and calls it. No fetch-timing race.
+myApp.setupWadLoader();
 
-    // Create Module only after the DOM exists.
-    window['Module'] = {
-        noInitialRun: true,
-        canvas: document.getElementById('canvas'),
-        print: (text) => myApp.print(text),
-        printErr: (text) => myApp.print(text),
-        onRuntimeInitialized: () => myApp.initModule(),
-        setStatus: (text) => {
-            if (text) myApp.setStatus(text);
-        },
-    };
+window['Module'] = {
+    noInitialRun: true,
+    canvas: document.getElementById('canvas'),
+    print: (text) => myApp.print(text),
+    printErr: (text) => myApp.print(text),
+    onRuntimeInitialized: () => myApp.initModule(),
+    setStatus: (text) => { if (text) myApp.setStatus(text); },
+};
 
-    // Load the WAD/mod loader after initialization.
-    myApp.setupWadLoader();
-
-    // Load Emscripten last.
-    let gzScript = document.createElement('script');
-    gzScript.src = 'gzdoom.js';
-    document.head.appendChild(gzScript);
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeGZDoom, {
-        once: true
-    });
-} else {
-    initializeGZDoom();
-}
-
+// load the emscripten-generated glue last (it reads window.Module)
+let gzScript = document.createElement('script');
+gzScript.src = 'gzdoom.js';
+document.head.appendChild(gzScript);
