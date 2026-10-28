@@ -1,4 +1,3 @@
-
 var GZDOOMSETTINGS = {
     CLOUDSAVEURL: "",
 
