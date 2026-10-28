@@ -46,8 +46,6 @@ class MyClass {
         this.canvas = document.getElementById('canvas');
         this.statusEl = document.getElementById('status');
 
-        document.getElementById('btnPlay').addEventListener('click', () => this.playGame());
-        document.getElementById('btnSettings').addEventListener('click', () => this.openSettings());
         document.getElementById('btnFullScreen').addEventListener('click', () => this.fullscreen());
         document.getElementById('btnNewGame').addEventListener('click', () => location.reload());
         document.getElementById('btnZoomOut').addEventListener('click', () => this.zoomOut());
