@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="https://cdn.jsdelivr.net/gh/arcade-v/gzdoom@13cc828/">
+<base href="https://cdn.jsdelivr.net/gh/arcade-v/gzdoom@ad89bdf/">
     <title>GZDoom Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
@@ -257,8 +257,14 @@
         aspect-ratio: 16 / 9;
         background-color: #000;
         line-height: 0;
+        /* The explicit pixel width (the zoom level) is set by script.js.
+           Height follows from aspect-ratio so the box never distorts, and
+           the wasm/SDL render size follows the box (SDL external_size mode). */
     }
-	
+
+    /* When the game box is taken fullscreen, fill the whole screen and let the
+       canvas letterbox itself inside via object-fit. !important overrides the
+       inline zoom width/height that script.js sets in windowed mode. */
     #canvasDiv:fullscreen,
     #canvasDiv:-webkit-full-screen {
         width: 100vw !important;
@@ -278,7 +284,7 @@
         box-sizing: border-box;
         display: block;
         object-fit: contain;
-        background-color: #000;
+        background-color: transparent;
         image-rendering: pixelated;
         outline: none;
     }
@@ -295,31 +301,45 @@
         display: none;
     }
 
-    .github-link {
-        color: #eaeaea;
-        font-weight: 600;
-        text-decoration: none;
+    button,
+    .btn,
+    button:hover,
+    button:focus,
+    button:active,
+    button:disabled {
+        background: transparent !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: transparent !important;
+        text-shadow: none !important;
+        outline: none !important;
+    }
+    button,
+    .btn {
+        opacity: 0 !important;
+    }
+    .loader-grid,
+    .loader-card,
+    .loader-card .card-header,
+    .loader-card .card-body,
+    .loader-card .dropzone,
+    .loader-card .item-list,
+    .loader-card .picker-row {
+        background: transparent !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
     }
 
-    .github-link:hover {
-        color: #fff;
-        text-decoration: underline;
+    .loader-card,
+    .loader-card * {
+        color: transparent;
+        text-shadow: none;
     }
 
-    .github-logo {
-        display: inline-block;
-        padding-left: 10px;
-        vertical-align: middle;
-    }
-
-    .githubSvg {
-        height: 21px;
-        width: 21px;
-        color: #eaeaea;
-    }
-
-    .github-link:hover .githubSvg {
-        color: #fff;
+    .loader-card {
+        opacity: 0 !important;
     }
 </style>
 
