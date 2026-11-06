@@ -6,7 +6,7 @@ var GZDOOMSETTINGS = {
 
     // --- Load mods directly from one file ---
     MODURLS: [
-        "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/lawn_of_the_dead/lawn_of_the_dead.wad"
+        "https://cdn.jsdelivr.net/gh/arcade-v/gzdoom/lawn_of_the_dead/Doom_Mower_v2.wad"
     ]
 };
 
