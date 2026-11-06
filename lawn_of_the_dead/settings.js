@@ -171,6 +171,8 @@ async function resolveGZDoomMods() {
 }
 
 async function prepareGZDoomSettings() {
+    const mods = await resolveGZDoomMods();
+    GZDOOMSETTINGS.MODURLS = mods;
     window.GZDOOMSETTINGS = GZDOOMSETTINGS;
     return GZDOOMSETTINGS;
 }
