@@ -8,7 +8,7 @@ var GZDOOMSETTINGS = {
     MODURLS: [
         "https://raw.githubusercontent.com/arcade-v/gzdoom/refs/heads/main/strange_aeons/strange_aeons.pk3",
 
-        "https://raw.githubusercontent.com/arcade-v/gzdoom/refs/heads/main/strange_aeons/HighNoonDrifter-v1.2c.pk3",
+        "https://raw.githubusercontent.com/arcade-v/gzdoom/refs/heads/main/strange_aeons/HighNoonDrifter_edit4.pk3",
 		
         "https://raw.githubusercontent.com/arcade-v/gzdoom/refs/heads/main/strange_aeons/strangeaeons-drifter-patch.pk3",
     ]
