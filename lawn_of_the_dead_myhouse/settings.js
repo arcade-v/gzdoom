@@ -22,6 +22,11 @@ var GZDOOMSETTINGS = {
 
     WADURL: getMirrors("doom_2/doom2.wad"),
 
+    MODNAMES: [
+        "Dad Visits MyHouse.wad",
+        "Doom_Mower_v2.wad",
+        "myhouse.pk3"
+    ],
     MODURLS: [
         {
             name: "Dad Visits MyHouse.wad",

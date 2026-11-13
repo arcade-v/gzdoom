@@ -230,11 +230,21 @@ class MyClass {
         this.autoStart = true;
 
         // Fixed base WAD + optional mods, straight from the configured URLs.
-        this.setBaseWad(this.makeDefItem({ path: wadUrl }));
-        (s.MODURLS || '').split(',')
-            .map((u) => u.trim())
-            .filter((u) => u.length)
-            .forEach((u) => this.addMod(this.makeDefItem({ path: u })));
+    this.setBaseWad(this.makeDefItem({
+        name: s.WADNAME || 'doom2.wad',
+        path: wadUrl
+    }));
+    
+    (s.MODURLS || '').split(',')
+        .map((u) => u.trim())
+        .filter((u) => u.length)
+        .forEach((u, i) => {
+            this.addMod(this.makeDefItem({
+                name: (s.MODNAMES && s.MODNAMES[i]) ||
+                      `mod_${i + 1}.pk3`,
+                path: u
+            }));
+        });
 
         // Hide the WAD/mod loader interface and the (now redundant) Play button;
         // autoload drives everything, so only loading + status remain visible.
@@ -585,10 +595,13 @@ class MyClass {
             this.writeFileOwn(dest, item.file.bytes);
             return dest;
         }
-        let name = item.path.split('/').pop();
+    
+        let name = item.label || item.path.split('/').pop();
         let dest = '/' + name;
+    
         this.setStatus('Loading ' + name + '\u2026');
         await this.loadFile(item.path, dest);
+    
         return dest;
     }
 
