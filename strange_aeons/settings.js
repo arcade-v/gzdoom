@@ -32,7 +32,7 @@ var GZDOOMSETTINGS = {
             name: "strange_aeons.pk3",
             parts: [
                 getMirrors("strange_aeons/strange_aeons.pk3.part1"),
-                getMirrors("strange_aeons/strange_aeons.pk3.pk3.part2"),
+                getMirrors("strange_aeons/strange_aeons.pk3.part2"),
                 getMirrors("strange_aeons/strange_aeons.pk3.part3"),
                 getMirrors("strange_aeons/strange_aeons.pk3.part4")
             ]
